@@ -35,14 +35,12 @@ namespace Compiler
             this.gunaPanel1 = new Guna.UI.WinForms.GunaPanel();
             this.label1 = new System.Windows.Forms.Label();
             this.btnCloseSystem = new Guna.UI.WinForms.GunaButton();
-            this.txtResult = new Guna.UI.WinForms.GunaTextBox();
             this.txtCodeTextArea = new Guna.UI.WinForms.GunaTextBox();
             this.btnOpenFile = new Guna.UI.WinForms.GunaButton();
             this.btnLexicalAnalysis = new Guna.UI.WinForms.GunaButton();
             this.btnSyntaxAnalysis = new Guna.UI.WinForms.GunaButton();
             this.btnSemanticAnalysis = new Guna.UI.WinForms.GunaButton();
             this.btnClear = new Guna.UI.WinForms.GunaButton();
-            this.label2 = new System.Windows.Forms.Label();
             this.gunaShadowPanel1 = new Guna.UI.WinForms.GunaShadowPanel();
             this.gunaPanel1.SuspendLayout();
             this.gunaShadowPanel1.SuspendLayout();
@@ -90,7 +88,7 @@ namespace Compiler
             this.btnCloseSystem.ImageSize = new System.Drawing.Size(20, 20);
             this.btnCloseSystem.Location = new System.Drawing.Point(759, 0);
             this.btnCloseSystem.Name = "btnCloseSystem";
-            this.btnCloseSystem.OnHoverBaseColor = System.Drawing.Color.SlateBlue;
+            this.btnCloseSystem.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(113)))), ((int)(((byte)(150)))));
             this.btnCloseSystem.OnHoverBorderColor = System.Drawing.Color.Black;
             this.btnCloseSystem.OnHoverForeColor = System.Drawing.Color.White;
             this.btnCloseSystem.OnHoverImage = null;
@@ -100,43 +98,24 @@ namespace Compiler
             this.btnCloseSystem.Text = "gunaButton1";
             this.btnCloseSystem.Click += new System.EventHandler(this.btnCloseSystem_Click);
             // 
-            // txtResult
-            // 
-            this.txtResult.BackColor = System.Drawing.Color.Transparent;
-            this.txtResult.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(227)))), ((int)(((byte)(136)))));
-            this.txtResult.BorderColor = System.Drawing.Color.Silver;
-            this.txtResult.BorderSize = 1;
-            this.txtResult.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtResult.FocusedBaseColor = System.Drawing.Color.White;
-            this.txtResult.FocusedBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            this.txtResult.FocusedForeColor = System.Drawing.SystemColors.ControlText;
-            this.txtResult.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txtResult.Location = new System.Drawing.Point(271, 376);
-            this.txtResult.Name = "txtResult";
-            this.txtResult.PasswordChar = '\0';
-            this.txtResult.Radius = 6;
-            this.txtResult.SelectedText = "";
-            this.txtResult.Size = new System.Drawing.Size(509, 55);
-            this.txtResult.TabIndex = 8;
-            // 
             // txtCodeTextArea
             // 
             this.txtCodeTextArea.BackColor = System.Drawing.Color.Transparent;
-            this.txtCodeTextArea.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(227)))), ((int)(((byte)(136)))));
-            this.txtCodeTextArea.BorderColor = System.Drawing.Color.Silver;
-            this.txtCodeTextArea.BorderSize = 1;
+            this.txtCodeTextArea.BaseColor = System.Drawing.Color.White;
+            this.txtCodeTextArea.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(113)))), ((int)(((byte)(150)))));
             this.txtCodeTextArea.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtCodeTextArea.Enabled = false;
             this.txtCodeTextArea.FocusedBaseColor = System.Drawing.Color.White;
             this.txtCodeTextArea.FocusedBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
             this.txtCodeTextArea.FocusedForeColor = System.Drawing.SystemColors.ControlText;
             this.txtCodeTextArea.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txtCodeTextArea.Location = new System.Drawing.Point(271, 73);
+            this.txtCodeTextArea.Location = new System.Drawing.Point(272, 60);
             this.txtCodeTextArea.Multiline = true;
             this.txtCodeTextArea.Name = "txtCodeTextArea";
             this.txtCodeTextArea.PasswordChar = '\0';
             this.txtCodeTextArea.Radius = 6;
             this.txtCodeTextArea.SelectedText = "";
-            this.txtCodeTextArea.Size = new System.Drawing.Size(509, 278);
+            this.txtCodeTextArea.Size = new System.Drawing.Size(505, 319);
             this.txtCodeTextArea.TabIndex = 12;
             // 
             // btnOpenFile
@@ -152,9 +131,9 @@ namespace Compiler
             this.btnOpenFile.ForeColor = System.Drawing.Color.White;
             this.btnOpenFile.Image = null;
             this.btnOpenFile.ImageSize = new System.Drawing.Size(20, 20);
-            this.btnOpenFile.Location = new System.Drawing.Point(33, 19);
+            this.btnOpenFile.Location = new System.Drawing.Point(33, 34);
             this.btnOpenFile.Name = "btnOpenFile";
-            this.btnOpenFile.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(143)))), ((int)(((byte)(255)))));
+            this.btnOpenFile.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(113)))), ((int)(((byte)(150)))));
             this.btnOpenFile.OnHoverBorderColor = System.Drawing.Color.Black;
             this.btnOpenFile.OnHoverForeColor = System.Drawing.Color.White;
             this.btnOpenFile.OnHoverImage = null;
@@ -180,9 +159,9 @@ namespace Compiler
             this.btnLexicalAnalysis.ForeColor = System.Drawing.Color.White;
             this.btnLexicalAnalysis.Image = null;
             this.btnLexicalAnalysis.ImageSize = new System.Drawing.Size(20, 20);
-            this.btnLexicalAnalysis.Location = new System.Drawing.Point(33, 75);
+            this.btnLexicalAnalysis.Location = new System.Drawing.Point(33, 90);
             this.btnLexicalAnalysis.Name = "btnLexicalAnalysis";
-            this.btnLexicalAnalysis.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(143)))), ((int)(((byte)(255)))));
+            this.btnLexicalAnalysis.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(113)))), ((int)(((byte)(150)))));
             this.btnLexicalAnalysis.OnHoverBorderColor = System.Drawing.Color.Black;
             this.btnLexicalAnalysis.OnHoverForeColor = System.Drawing.Color.White;
             this.btnLexicalAnalysis.OnHoverImage = null;
@@ -208,9 +187,9 @@ namespace Compiler
             this.btnSyntaxAnalysis.ForeColor = System.Drawing.Color.White;
             this.btnSyntaxAnalysis.Image = null;
             this.btnSyntaxAnalysis.ImageSize = new System.Drawing.Size(20, 20);
-            this.btnSyntaxAnalysis.Location = new System.Drawing.Point(33, 130);
+            this.btnSyntaxAnalysis.Location = new System.Drawing.Point(33, 145);
             this.btnSyntaxAnalysis.Name = "btnSyntaxAnalysis";
-            this.btnSyntaxAnalysis.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(143)))), ((int)(((byte)(255)))));
+            this.btnSyntaxAnalysis.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(113)))), ((int)(((byte)(150)))));
             this.btnSyntaxAnalysis.OnHoverBorderColor = System.Drawing.Color.Black;
             this.btnSyntaxAnalysis.OnHoverForeColor = System.Drawing.Color.White;
             this.btnSyntaxAnalysis.OnHoverImage = null;
@@ -236,9 +215,9 @@ namespace Compiler
             this.btnSemanticAnalysis.ForeColor = System.Drawing.Color.White;
             this.btnSemanticAnalysis.Image = null;
             this.btnSemanticAnalysis.ImageSize = new System.Drawing.Size(20, 20);
-            this.btnSemanticAnalysis.Location = new System.Drawing.Point(33, 183);
+            this.btnSemanticAnalysis.Location = new System.Drawing.Point(33, 198);
             this.btnSemanticAnalysis.Name = "btnSemanticAnalysis";
-            this.btnSemanticAnalysis.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(143)))), ((int)(((byte)(255)))));
+            this.btnSemanticAnalysis.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(113)))), ((int)(((byte)(150)))));
             this.btnSemanticAnalysis.OnHoverBorderColor = System.Drawing.Color.Black;
             this.btnSemanticAnalysis.OnHoverForeColor = System.Drawing.Color.White;
             this.btnSemanticAnalysis.OnHoverImage = null;
@@ -264,7 +243,7 @@ namespace Compiler
             this.btnClear.ForeColor = System.Drawing.Color.White;
             this.btnClear.Image = null;
             this.btnClear.ImageSize = new System.Drawing.Size(20, 20);
-            this.btnClear.Location = new System.Drawing.Point(31, 236);
+            this.btnClear.Location = new System.Drawing.Point(31, 251);
             this.btnClear.Name = "btnClear";
             this.btnClear.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.btnClear.OnHoverBorderColor = System.Drawing.Color.Black;
@@ -278,17 +257,6 @@ namespace Compiler
             this.btnClear.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(68, 382);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(141, 42);
-            this.label2.TabIndex = 19;
-            this.label2.Text = "Result:";
-            // 
             // gunaShadowPanel1
             // 
             this.gunaShadowPanel1.BackColor = System.Drawing.Color.Transparent;
@@ -298,12 +266,12 @@ namespace Compiler
             this.gunaShadowPanel1.Controls.Add(this.btnClear);
             this.gunaShadowPanel1.Controls.Add(this.btnLexicalAnalysis);
             this.gunaShadowPanel1.Controls.Add(this.btnSemanticAnalysis);
-            this.gunaShadowPanel1.Location = new System.Drawing.Point(17, 63);
+            this.gunaShadowPanel1.Location = new System.Drawing.Point(17, 60);
             this.gunaShadowPanel1.Name = "gunaShadowPanel1";
             this.gunaShadowPanel1.Radius = 6;
             this.gunaShadowPanel1.ShadowColor = System.Drawing.Color.Black;
             this.gunaShadowPanel1.ShadowDepth = 50;
-            this.gunaShadowPanel1.Size = new System.Drawing.Size(237, 292);
+            this.gunaShadowPanel1.Size = new System.Drawing.Size(237, 319);
             this.gunaShadowPanel1.TabIndex = 20;
             // 
             // formCompiler
@@ -311,10 +279,8 @@ namespace Compiler
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(800, 401);
             this.Controls.Add(this.gunaShadowPanel1);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.txtResult);
             this.Controls.Add(this.txtCodeTextArea);
             this.Controls.Add(this.gunaPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -325,7 +291,6 @@ namespace Compiler
             this.gunaPanel1.PerformLayout();
             this.gunaShadowPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -334,7 +299,6 @@ namespace Compiler
         private Guna.UI.WinForms.GunaElipse gunaElipse1;
         private Guna.UI.WinForms.GunaPanel gunaPanel1;
         private Guna.UI.WinForms.GunaButton btnCloseSystem;
-        internal Guna.UI.WinForms.GunaTextBox txtResult;
         internal Guna.UI.WinForms.GunaTextBox txtCodeTextArea;
         private Guna.UI.WinForms.GunaButton btnOpenFile;
         private System.Windows.Forms.Label label1;
@@ -342,7 +306,6 @@ namespace Compiler
         private Guna.UI.WinForms.GunaButton btnSemanticAnalysis;
         private Guna.UI.WinForms.GunaButton btnSyntaxAnalysis;
         private Guna.UI.WinForms.GunaButton btnLexicalAnalysis;
-        private System.Windows.Forms.Label label2;
         private Guna.UI.WinForms.GunaShadowPanel gunaShadowPanel1;
     }
 }

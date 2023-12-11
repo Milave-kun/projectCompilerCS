@@ -11,6 +11,7 @@ namespace Compiler
             InitializeComponent();
         }
 
+// Button Open File
         private void btnOpenFile_Click_1(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
@@ -53,6 +54,7 @@ namespace Compiler
             }
         }
 
+// Button Clear Text
         private void btnClear_Click(object sender, EventArgs e)
         {
             // Display a warning message before clearing the text boxes
@@ -61,7 +63,6 @@ namespace Compiler
             if (result == DialogResult.Yes)
             {
                 // If the user clicks "Yes," clear the text boxes
-                txtResult.Clear();
                 txtCodeTextArea.Clear();
 
                 // Enable Open File button
@@ -76,15 +77,13 @@ namespace Compiler
             // If the user clicks "No," do nothing
         }
 
+// Button Lexical Analysis
         private void btnLexicalAnalysis_Click_1(object sender, EventArgs e)
         {
-            // Perform lexical analysis here and display results in the txtResult Text Area
+            // Perform lexical analysis here and display results in a message box
 
             // For example, you can check a condition and set the result
             string result = CheckLexicalAnalysis(txtCodeTextArea.Text);
-
-            // Display the result in the txtResult TextArea
-            txtResult.Text = result;
 
             // Display a message box based on the analysis result
             MessageBox.Show(result == "Accepted" ? "Lexical analysis passed!" : "Lexical analysis failed!", "Analysis Result", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -95,6 +94,7 @@ namespace Compiler
             // Sample lexical analysis function
         }
 
+        // Sample lexical analysis function
         private string CheckLexicalAnalysis(string code)
         {
             // Implement your lexical analysis logic here
@@ -111,15 +111,14 @@ namespace Compiler
                 return "Not Accepted";
             }
         }
+
+// Button Syntax Analysis
         private void btnSyntaxAnalysis_Click(object sender, EventArgs e)
         {
-            // Perform syntax analysis here and display results in the txtResult TextArea
+            // Perform syntax analysis here and display results in a message box
 
             // For example, you can check a condition and set the result
             string result = CheckSyntaxAnalysis(txtCodeTextArea.Text);
-
-            // Display the result in the txtResult TextArea
-            txtResult.Text = result;
 
             // Display a message box based on the analysis result
             MessageBox.Show(result == "Accepted" ? "Syntax analysis passed!" : "Syntax analysis failed!", "Analysis Result", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -127,7 +126,6 @@ namespace Compiler
             // Disable the syntax analysis button after displaying result
             btnSyntaxAnalysis.Enabled = false;
         }
-
 
         // Sample syntax analysis function
         private string CheckSyntaxAnalysis(string code)
@@ -147,15 +145,13 @@ namespace Compiler
             }
         }
 
+// Button Semantical Analysis
         private void btnSemanticAnalysis_Click(object sender, EventArgs e)
         {
-            // Perform semantic analysis here and display results in the txtResult TextArea
+            // Perform semantic analysis here and display results in a message box
 
             // For example, you can check a condition and set the result
             string result = CheckSemanticAnalysis(txtCodeTextArea.Text);
-
-            // Display the result in the txtResult TextArea
-            txtResult.Text = result;
 
             // Display a message box based on the analysis result
             MessageBox.Show(result == "Accepted" ? "Semantic analysis passed!" : "Semantic analysis failed!", "Analysis Result", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -181,6 +177,7 @@ namespace Compiler
             }
         }
 
+// Button Close System
         private void btnCloseSystem_Click(object sender, EventArgs e)
         {
             // Display a warning message before closing the form
@@ -193,7 +190,6 @@ namespace Compiler
             }
             // If the user clicks "No," do nothing
         }
-
 
     }
 }
