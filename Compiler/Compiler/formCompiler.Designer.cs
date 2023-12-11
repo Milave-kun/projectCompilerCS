@@ -234,7 +234,7 @@ namespace Compiler
             this.btnClear.AnimationHoverSpeed = 0.07F;
             this.btnClear.AnimationSpeed = 0.03F;
             this.btnClear.BackColor = System.Drawing.Color.Transparent;
-            this.btnClear.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(77)))), ((int)(((byte)(120)))));
+            this.btnClear.BaseColor = System.Drawing.Color.Firebrick;
             this.btnClear.BorderColor = System.Drawing.Color.Black;
             this.btnClear.DialogResult = System.Windows.Forms.DialogResult.None;
             this.btnClear.Enabled = false;
