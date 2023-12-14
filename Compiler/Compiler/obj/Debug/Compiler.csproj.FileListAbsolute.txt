@@ -10,3 +10,14 @@ C:\Users\johnd\OneDrive\Desktop\Compiler\Compiler\obj\Debug\Compiler.csproj.Copy
 C:\Users\johnd\OneDrive\Desktop\Compiler\Compiler\obj\Debug\Compiler.exe
 C:\Users\johnd\OneDrive\Desktop\Compiler\Compiler\obj\Debug\Compiler.pdb
 C:\Users\johnd\OneDrive\Desktop\Compiler\Compiler\obj\Debug\Compiler.formCompiler.resources
+C:\Users\Dell\Downloads\projectCompilerCS-main_V1\projectCompilerCS-main\Compiler\Compiler\obj\Debug\Compiler.csproj.AssemblyReference.cache
+C:\Users\Dell\Downloads\projectCompilerCS-main_V1\projectCompilerCS-main\Compiler\Compiler\obj\Debug\Compiler.exe
+C:\Users\Dell\Downloads\projectCompilerCS-main_V1\projectCompilerCS-main\Compiler\Compiler\obj\Debug\Compiler.pdb
+C:\Users\Dell\Downloads\projectCompilerCS-main_V1\projectCompilerCS-main\Compiler\Compiler\bin\Debug\Compiler.exe.config
+C:\Users\Dell\Downloads\projectCompilerCS-main_V1\projectCompilerCS-main\Compiler\Compiler\bin\Debug\Compiler.exe
+C:\Users\Dell\Downloads\projectCompilerCS-main_V1\projectCompilerCS-main\Compiler\Compiler\bin\Debug\Compiler.pdb
+C:\Users\Dell\Downloads\projectCompilerCS-main_V1\projectCompilerCS-main\Compiler\Compiler\obj\Debug\Compiler.formCompiler.resources
+C:\Users\Dell\Downloads\projectCompilerCS-main_V1\projectCompilerCS-main\Compiler\Compiler\obj\Debug\Compiler.Properties.Resources.resources
+C:\Users\Dell\Downloads\projectCompilerCS-main_V1\projectCompilerCS-main\Compiler\Compiler\obj\Debug\Compiler.csproj.GenerateResource.cache
+C:\Users\Dell\Downloads\projectCompilerCS-main_V1\projectCompilerCS-main\Compiler\Compiler\obj\Debug\Compiler.csproj.CoreCompileInputs.cache
+C:\Users\Dell\Downloads\projectCompilerCS-main_V1\projectCompilerCS-main\Compiler\Compiler\obj\Debug\Compiler.csproj.CopyComplete
