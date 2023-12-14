@@ -14,7 +14,7 @@ namespace Compiler
             InitializeComponent();
         }
 
-       // List<string> lines = new();
+        List<string> lines = new();
         List<string> lexemes = new();
         List<string> tokens = new();
         List<string> dataTypes = new List<string>
@@ -25,14 +25,13 @@ namespace Compiler
         {
             "<data_type>","<identifier>","<assignment_operator>","<value>","<delimiter>"
         };
-        string lines = "";
 
 // Button Open File
         private void btnOpenFile_Click_1(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
 
-            openFileDialog.Filter = "Text Files (*.txt)|*.txt|All Files (*.*)|*.*";
+            openFileDialog.Filter = "All Files (*.*)|*.*";
             openFileDialog.FilterIndex = 1;
             openFileDialog.RestoreDirectory = true;
 
@@ -42,41 +41,32 @@ namespace Compiler
 
                 try
                 {
-                    //string fileContents = File.ReadAllText(filePath);
-                    //txtCodeTextArea.Text = fileContents;
+                    string fileContents = File.ReadAllText(filePath);
+                    txtCodeTextArea.Text = fileContents;
 
-                    lines = File.ReadAllText(filePath);
-                    Console.WriteLine(lines);
-                    txtCodeTextArea.Text = lines;
-
-                    // Read all lines from the file and store them in a List<string>
-                    //lines = ReadLinesFromFile(filePath);
-
-
-                    //List<string> ReadLinesFromFile(string filePath)
-                    //{
-                    //    List<string> liness = new List<string>();
-
-                    //    // Read all lines from the file and add them to the List
-                    //    using (StreamReader reader = new StreamReader(filePath))
-                    //    {
-                    //        while (!reader.EndOfStream)
-                    //        {
-                    //            string line = reader.ReadLine();
-                    //            liness.Add(line);
-                    //        }
-                    //    }
-                    //    return liness;
-                    //}
+                    //Read all lines from the file and store them in a List<string>
+                    lines = ReadLinesFromFile(filePath);
+ 
+                    List<string> ReadLinesFromFile(string filePath)
+                    {
+                        // Read all lines from the file and add them to the List
+                        using (StreamReader reader = new StreamReader(filePath))
+                        {
+                            while (!reader.EndOfStream)
+                            {
+                                string line = reader.ReadLine();
+                                lines.Add(line);
+                            }
+                        }
+                        return lines;
+                    }
 
                     // Enable lexical analysis button
                     btnLexicalAnalysis.Enabled = true;
                     // Enable Clear button
                     btnClear.Enabled = true;
                     // Disable Open File button
-                    btnOpenFile.Enabled = false;
-
-                    
+                    btnOpenFile.Enabled = false;     
                 } 
                 
                 catch (Exception ex)
@@ -121,81 +111,50 @@ namespace Compiler
 // Button Lexical Analysis
         private void btnLexicalAnalysis_Click_1(object sender, EventArgs e)
         {
-            
-            string result = "";
-            // Perform lexical analysis here and display results in a message box
+            bool isPass = true;
 
             // take each line to split them to lexemes
-            //foreach (string line in lines)
-            //{
-              
-                    bool isPass = true;
-
-            // split each word by space
-            // store to array
-            // convert array to list
-            // Console.WriteLine(lines);
-
-            string lines = "String,greeting";
-            int liness = lines.Count();
-            Console.WriteLine(liness);
-            string[] lexemeArray = Regex.Split(lines, @"\s+");
-            Console.WriteLine(lexemeArray);
-                   lexemes = new List<string>(lexemeArray);
-            Console.WriteLine(lexemes);
-            foreach (string lexeme in lexemes)
-                    {
-                        string token = getToken(lexeme);
-                        tokens.Add(token);
-
-                    }
-                    
-
-                    foreach (string token in tokens)
-                    {
-                        if (!fixedTokens.Contains(token))
-                        {
-                            isPass = false;
-                            break;
-                        }
-
-                    
-                    }
-
-                    ////clear Lists for the next line
-                    //lexemes.Clear();
-                    //tokens.Clear();
-
-                //if (!isPass)
-                //{
-                //    // No need to continue checking lines if isPass is false
-                //    break;
-                //}
-            //}
-
-           
-
-            // update result
-            if (result.Equals("Pass"))
+            foreach (string line in lines)
             {
-               
+                string[] lexemeArr = Regex.Split(line, @"\s+");
+                lexemes = new List<string>(lexemeArr);
+                   
+                foreach (string lexeme in lexemes)
+                {
+                    string token = getToken(lexeme);
+                    tokens.Add(token);
+                }
+                    
+                foreach (string token in tokens)
+                {
+                    Console.WriteLine(token);
+                    if (fixedTokens.Contains(token))
+                    {
+                        isPass = true;
+                        continue;
+                    }
+                    else
+                    {
+                        isPass = false;
+                        break;
+                    }   
+                }
+                // clear tokens for the next line
+                tokens.Clear();
+            }
+            
+            if (isPass)
+            {
                 btnSyntaxAnalysis.Enabled = true;
             }
-               
-
+            
             // Display a message box based on the analysis result
-            MessageBox.Show(result == "Pass" ? "Lexical analysis passed!" : "Lexical analysis failed!", "Analysis Result", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show(isPass ? "Lexical analysis passed!" : "Lexical analysis failed!", "Analysis Result", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             // Disable the lexical analysis button after displaying result
             btnLexicalAnalysis.Enabled = false;
-
-         
         }
 
-       
-
-        // my sample function
-        // findToken
         private string getToken (string lexeme)
         {
             // use var for type inferencing
@@ -204,40 +163,21 @@ namespace Compiler
             // check if lexeme is equal to any of the data types
             if (dataTypes.Contains(lexeme))
                 token = "<data_type>";
-            
             else if (lexeme.Equals("="))
                 token = "<assignment_operator>";
-            
             else if (lexeme.Equals(";"))
                 token = "<delimiter>";
-            
-            else if (isValidVar(lexeme))
-                token = "<identifier>";
-            
             else if (isValue(lexeme))
                 token = "<value>";
-            
-
+            else if (isValidVar(lexeme))
+                token = "<identifier>";   
             return token;
         }
-
-        private bool isValidVar (string lexeme)
-        {
-            //if (dataTypes.Contains(lexeme))
-            //    return false;
-
-            //if (!char.IsLetter(lexeme[0]))
-              return false;
-            
-            //return char.IsLetter(lexeme[0]);
-            
-        }
-
         private bool isValue (string lexeme)
         {
             if (lexeme.StartsWith("\"") && lexeme.EndsWith("\""))
                 return true;
-
+            
             if (lexeme.StartsWith("\'") && lexeme.EndsWith("\'"))
             {
                 if (lexeme.Length == 3 && char.IsLetter(lexeme[1]))
@@ -247,16 +187,18 @@ namespace Compiler
                     // dataType = "String";
                     return true;
             }
-            
 
-            if (int.TryParse(lexeme, out _))
+            if (Regex.IsMatch(lexeme, @"^\d+(\.\d+)?$"))
                 return true;
-
             
             return false;
         }
+        private bool isValidVar(string lexeme)
+        {
+            return char.IsLetter(lexeme[0]);
+        }
 
-// Button Syntax Analysis
+        // Button Syntax Analysis
         private void btnSyntaxAnalysis_Click(object sender, EventArgs e)
         {
             // Perform syntax analysis here and display results in a message box
