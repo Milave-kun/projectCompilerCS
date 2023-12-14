@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.IO;
 using System.Windows.Forms;
 
@@ -44,7 +45,8 @@ namespace Compiler
                     //string fileContents = File.ReadAllText(filePath);
                     //txtCodeTextArea.Text = fileContents;
 
-                    string lines = File.ReadAllText(filePath);
+                    lines = File.ReadAllText(filePath);
+                    Console.WriteLine(lines);
                     txtCodeTextArea.Text = lines;
 
                     // Read all lines from the file and store them in a List<string>
@@ -74,7 +76,7 @@ namespace Compiler
                     // Disable Open File button
                     btnOpenFile.Enabled = false;
 
-                 
+                    
                 } 
                 
                 catch (Exception ex)
@@ -129,18 +131,25 @@ namespace Compiler
               
                     bool isPass = true;
 
-                    // split each word by space
-                    // store to array
-                    // convert array to list
-                    string[] lexemeArray = lines.Split(' ');
-                   lexemes = new List<string>(lexemeArray);
+            // split each word by space
+            // store to array
+            // convert array to list
+            // Console.WriteLine(lines);
 
-                    foreach (string lexeme in lexemes)
+            string lines = "String,greeting";
+            int liness = lines.Count();
+            Console.WriteLine(liness);
+            string[] lexemeArray = Regex.Split(lines, @"\s+");
+            Console.WriteLine(lexemeArray);
+                   lexemes = new List<string>(lexemeArray);
+            Console.WriteLine(lexemes);
+            foreach (string lexeme in lexemes)
                     {
                         string token = getToken(lexeme);
                         tokens.Add(token);
 
                     }
+                    
 
                     foreach (string token in tokens)
                     {
@@ -214,13 +223,14 @@ namespace Compiler
 
         private bool isValidVar (string lexeme)
         {
-            if (dataTypes.Contains(lexeme))
-                return false;
-
-            //if (!char.IsLetter(lexeme[0]))
+            //if (dataTypes.Contains(lexeme))
             //    return false;
 
-            return char.IsLetter(lexeme[0]);
+            //if (!char.IsLetter(lexeme[0]))
+              return false;
+            
+            //return char.IsLetter(lexeme[0]);
+            
         }
 
         private bool isValue (string lexeme)
