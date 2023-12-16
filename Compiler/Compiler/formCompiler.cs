@@ -19,7 +19,7 @@ namespace Compiler
         List<string> tokens = new();
         List<string> dataTypes = new List<string>
         {
-            "int","float","boolean","char","String"
+            "int","double","boolean","char","String"
         };
         List<string> fixedTokens = new List<string>
         {
@@ -198,7 +198,7 @@ namespace Compiler
         // isValidVar()
         private bool isValidVar(string lexeme)
         {
-            return char.IsLetter(lexeme[0]); // checks if 
+            return char.IsLetter(lexeme[0]); // checks if var name starts with a letter
         }
 
         // Button Syntax Analysis
