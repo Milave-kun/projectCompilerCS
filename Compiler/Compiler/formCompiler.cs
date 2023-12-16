@@ -30,7 +30,6 @@ namespace Compiler
         private void btnOpenFile_Click_1(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
-
             openFileDialog.Filter = "All Files (*.*)|*.*";
             openFileDialog.FilterIndex = 1;
             openFileDialog.RestoreDirectory = true;
@@ -41,12 +40,14 @@ namespace Compiler
 
                 try
                 {
+                    //Display file content on the text area
                     string fileContents = File.ReadAllText(filePath);
                     txtCodeTextArea.Text = fileContents;
 
                     //Read all lines from the file and store them in a List<string>
                     lines = ReadLinesFromFile(filePath);
- 
+
+                    //ReadLinesFromFile()
                     List<string> ReadLinesFromFile(string filePath)
                     {
                         // Read all lines from the file and add them to the List
@@ -61,11 +62,9 @@ namespace Compiler
                         return lines;
                     }
 
-                    // Enable lexical analysis button
+                    // Enable/Disable necessary buttons
                     btnLexicalAnalysis.Enabled = true;
-                    // Enable Clear button
                     btnClear.Enabled = true;
-                    // Disable Open File button
                     btnOpenFile.Enabled = false;     
                 } 
                 
@@ -83,7 +82,7 @@ namespace Compiler
                 btnClear.Enabled = false;
                 btnOpenFile.Enabled = true; // Enable Open File button if the dialog is canceled
             }  
-        } // openFile
+        } // end OpenFile
 
 // Button Clear Text
         private void btnClear_Click(object sender, EventArgs e)
@@ -96,11 +95,9 @@ namespace Compiler
                 // If the user clicks "Yes," clear the text boxes
                 txtCodeTextArea.Clear();
 
-                // Enable Open File button
+                // Enable/Disable necessary buttons
                 btnOpenFile.Enabled = true;
-                // Disable Clear button
                 btnClear.Enabled = false;
-                // Disable other analysis buttons
                 btnLexicalAnalysis.Enabled = false;
                 btnSyntaxAnalysis.Enabled = false;
                 btnSemanticAnalysis.Enabled = false;
@@ -113,21 +110,22 @@ namespace Compiler
         {
             bool isPass = true;
 
-            // take each line to split them to lexemes
+            // per line, split them to lexemes
             foreach (string line in lines)
             {
-                string[] lexemeArr = Regex.Split(line, @"\s+");
-                lexemes = new List<string>(lexemeArr);
-                   
+                string[] lexemeArr = Regex.Split(line, @"\s+"); //split by space
+                lexemes = new List<string>(lexemeArr); // convert array to list
+
+                // per lexeme, get its respective token
                 foreach (string lexeme in lexemes)
                 {
                     string token = getToken(lexeme);
                     tokens.Add(token);
                 }
-                    
+
+                // per token, check if they matches the token catalog
                 foreach (string token in tokens)
                 {
-                    Console.WriteLine(token);
                     if (fixedTokens.Contains(token))
                     {
                         isPass = true;
@@ -136,31 +134,32 @@ namespace Compiler
                     else
                     {
                         isPass = false;
-                        break;
+                        break; // stop reading next line if current line fails already
                     }   
                 }
-                // clear tokens for the next line
+                // clear tokens for the next line's tokens
                 tokens.Clear();
             }
-            
+
+            // enable necessary button
             if (isPass)
             {
                 btnSyntaxAnalysis.Enabled = true;
             }
             
-            // Display a message box based on the analysis result
+            // display analysis result
             MessageBox.Show(isPass ? "Lexical analysis passed!" : "Lexical analysis failed!", "Analysis Result", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             // Disable the lexical analysis button after displaying result
             btnLexicalAnalysis.Enabled = false;
         }
 
+        // getToken()
         private string getToken (string lexeme)
         {
             // use var for type inferencing
             var token = ""; 
 
-            // check if lexeme is equal to any of the data types
             if (dataTypes.Contains(lexeme))
                 token = "<data_type>";
             else if (lexeme.Equals("="))
@@ -173,6 +172,8 @@ namespace Compiler
                 token = "<identifier>";   
             return token;
         }
+
+        // isValue()
         private bool isValue (string lexeme)
         {
             if (lexeme.StartsWith("\"") && lexeme.EndsWith("\""))
@@ -188,14 +189,16 @@ namespace Compiler
                     return true;
             }
 
-            if (Regex.IsMatch(lexeme, @"^\d+(\.\d+)?$"))
+            if (Regex.IsMatch(lexeme, @"^\d+(\.\d+)?$")) // checks if value is numeric
                 return true;
             
             return false;
         }
+
+        // isValidVar()
         private bool isValidVar(string lexeme)
         {
-            return char.IsLetter(lexeme[0]);
+            return char.IsLetter(lexeme[0]); // checks if 
         }
 
         // Button Syntax Analysis
