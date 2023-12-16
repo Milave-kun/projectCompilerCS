@@ -26,7 +26,7 @@ namespace Compiler
             "<data_type>","<identifier>","<assignment_operator>","<value>","<delimiter>"
         };
 
-// Button Open File
+        // Button Open File
         private void btnOpenFile_Click_1(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
@@ -65,9 +65,9 @@ namespace Compiler
                     // Enable/Disable necessary buttons
                     btnLexicalAnalysis.Enabled = true;
                     btnClear.Enabled = true;
-                    btnOpenFile.Enabled = false;     
-                } 
-                
+                    btnOpenFile.Enabled = false;
+                }
+
                 catch (Exception ex)
                 {
                     // Handle file reading errors
@@ -81,10 +81,10 @@ namespace Compiler
                 btnLexicalAnalysis.Enabled = false;
                 btnClear.Enabled = false;
                 btnOpenFile.Enabled = true; // Enable Open File button if the dialog is canceled
-            }  
+            }
         } // end OpenFile
 
-// Button Clear Text
+        // Button Clear Text
         private void btnClear_Click(object sender, EventArgs e)
         {
             // Display a warning message before clearing the text boxes
@@ -105,7 +105,7 @@ namespace Compiler
             // If the user clicks "No," do nothing
         }
 
-// Button Lexical Analysis
+        // Button Lexical Analysis
         private void btnLexicalAnalysis_Click_1(object sender, EventArgs e)
         {
             bool isPass = true;
@@ -135,7 +135,7 @@ namespace Compiler
                     {
                         isPass = false;
                         break; // stop reading next line if current line fails already
-                    }   
+                    }
                 }
                 // clear tokens for the next line's tokens
                 tokens.Clear();
@@ -146,19 +146,20 @@ namespace Compiler
             {
                 btnSyntaxAnalysis.Enabled = true;
             }
-            
+
             // display analysis result
             MessageBox.Show(isPass ? "Lexical analysis passed!" : "Lexical analysis failed!", "Analysis Result", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             // Disable the lexical analysis button after displaying result
             btnLexicalAnalysis.Enabled = false;
+
         }
 
         // getToken()
-        private string getToken (string lexeme)
+        private string getToken(string lexeme)
         {
             // use var for type inferencing
-            var token = ""; 
+            var token = "";
 
             if (dataTypes.Contains(lexeme))
                 token = "<data_type>";
@@ -169,16 +170,16 @@ namespace Compiler
             else if (isValue(lexeme))
                 token = "<value>";
             else if (isValidVar(lexeme))
-                token = "<identifier>";   
+                token = "<identifier>";
             return token;
         }
 
         // isValue()
-        private bool isValue (string lexeme)
+        private bool isValue(string lexeme)
         {
             if (lexeme.StartsWith("\"") && lexeme.EndsWith("\""))
                 return true;
-            
+
             if (lexeme.StartsWith("\'") && lexeme.EndsWith("\'"))
             {
                 if (lexeme.Length == 3 && char.IsLetter(lexeme[1]))
@@ -191,7 +192,7 @@ namespace Compiler
 
             if (Regex.IsMatch(lexeme, @"^\d+(\.\d+)?$")) // checks if value is numeric
                 return true;
-            
+
             return false;
         }
 
@@ -214,6 +215,7 @@ namespace Compiler
 
             // Disable the syntax analysis button after displaying result
             btnSyntaxAnalysis.Enabled = false;
+            btnSemanticAnalysis.Enabled = true;
         }
 
         // Sample syntax analysis function
@@ -234,39 +236,75 @@ namespace Compiler
             }
         }
 
-// Button Semantical Analysis
         private void btnSemanticAnalysis_Click(object sender, EventArgs e)
         {
-            // Perform semantic analysis here and display results in a message box
+            bool isPass = true;
 
-            // For example, you can check a condition and set the result
-            string result = CheckSemanticAnalysis(txtCodeTextArea.Text);
+            foreach (string line in lines)
+            {
+                if (IsSemanticallyCorrect(line))
+                {
+                    isPass = true;
+                    continue;
+                }
+                else
+                {
+                    isPass = false;
+                    break;
+                }
+            }
 
-            // Display a message box based on the analysis result
-            MessageBox.Show(result == "Accepted" ? "Semantic analysis passed!" : "Semantic analysis failed!", "Analysis Result", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show(isPass ? "Semantic analysis passed!" : "Semantic analysis failed!", "Analysis Result", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-            // Disable the semantic analysis button after displaying result
-            btnSemanticAnalysis.Enabled = false;
+            if (isPass) { btnSemanticAnalysis.Enabled = false; }
+            else { btnSemanticAnalysis.Enabled = true; }
         }
 
-        // Sample semantic analysis function
-        private string CheckSemanticAnalysis(string code)
+        public static bool IsSemanticallyCorrect(string expression)
         {
-            // Implement your semantic analysis logic here
-            // This is a placeholder, you need to replace it with your actual logic
+            string pattern = @"\s*(\w+)\s+(\w+)\s*=\s*([^;]+)\s*;";
 
-            // For example, check if the code adheres to specific semantic rules
-            if (code.Contains("some semantic rule"))
+            if (!Regex.IsMatch(expression, pattern))
             {
-                return "Accepted";
+                return false;
             }
-            else
+
+            string[] parts = expression.Split('=');
+            string variableType = parts[0].Trim().Split(' ')[0];
+            string value = parts[1].Trim().TrimEnd(';').Trim();
+
+            try
             {
-                return "Not Accepted";
+                switch (variableType)
+                {
+                    case "int":
+                        int.Parse(value);
+                        break;
+                    case "double":
+                        double.Parse(value);
+                        break;
+                    case "String":
+
+                        break;
+                    case "boolean":
+                        bool.Parse(value);
+                        break;
+                    case "char":
+                        char.Parse(value);
+                        break;
+                    default:
+                        return false;
+                }
             }
+            catch (FormatException)
+            {
+                return false;
+            }
+
+            return true;
         }
 
-// Button Close System
+        // Button Close System
         private void btnCloseSystem_Click(object sender, EventArgs e)
         {
             // Display a warning message before closing the form
