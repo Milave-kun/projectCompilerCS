@@ -99,6 +99,9 @@ namespace Compiler
                 btnLexicalAnalysis.Enabled = false;
                 btnSyntaxAnalysis.Enabled = false;
                 btnSemanticAnalysis.Enabled = false;
+                collectedToken.Clear();
+                lines.Clear();
+
             }
             // If the user clicks "No," do nothing
         }
@@ -218,40 +221,38 @@ namespace Compiler
 
         // Sample syntax analysis function
         private string CheckSyntaxAnalysis(string code)
-        {
-            List<string> syntaxToken = new();
-            foreach (string token in collectedToken)
+        {         
+            List<string> ct = new();
+            foreach (string line in lines)
             {
-                syntaxToken.Add(token);
-                if (token == "<delimiter>")
+                List<string> lexemesList = new List<string>();
+                string[] lexemeArr = line.Split(' ');
+                foreach (string lexeme in lexemeArr)
                 {
-
-                    if (CheckSyntax(syntaxToken) == false)
-                    {
-                        syntaxToken.Clear();
-                        return "Not Accepted";
-                    }
-                    syntaxToken.Clear();
+                    string token = getToken(lexeme);
+                    lexemesList.Add(token);
+                }
+                if (!CheckSyntax(lexemesList))
+                {
+                    lexemesList.Clear();
+                    return "Not Accepted";
                 }
             }
-            syntaxToken.Clear();
-            // If the sequence is correct, return "Accepted"
             return "Accepted";
         }
         private bool CheckSyntax(List<string> syntaxToken)
         {
+            
             if (syntaxToken.Count == 3)
             {
-                if (syntaxToken[0] != "<data_type>") { return false; }
-                if (syntaxToken[1] != "<identifier>") { return false; }
+                if (syntaxToken[0] == "<data_type>" && syntaxToken[1] == "<identifier>")
+                    return true;               
             }
-            else { return true; }
-
-            if (syntaxToken.Count == 5)
-            {
-                if (syntaxToken[0] != "<data_type>" && syntaxToken[1] != "<identifier>" && syntaxToken[2] != "<assignment_operator>" && syntaxToken[3] != "<value>") { return false; }
-            }
-            else { return true; }
+            else if(syntaxToken.Count == 5)
+                {
+                if (syntaxToken[0] == "<data_type>" && syntaxToken[1] == "<identifier>" && syntaxToken[2] == "<assignment_operator>" && syntaxToken[3] == "<value>")
+                    return true;
+                }
             return false;
         }
 
@@ -274,29 +275,26 @@ namespace Compiler
         private string CheckSemanticAnalysis(string code)
         {
             List<string> semanticTokens = new();
-            foreach (string line in lines)
+            foreach(string lexeme in lexemes)
             {
-                string[] lexemeArr = Regex.Split(line, @"\s+");
-                foreach (string lexeme in lexemeArr)
+                semanticTokens.Add(lexeme);
+                if (lexeme == ";")
                 {
-                    semanticTokens.Add(lexeme);
-                    if (lexeme == ";")
+                    if (isSemantic(semanticTokens) == false)
                     {
-                        if (isSemantic(semanticTokens) == false)
-                        {
-                            semanticTokens.Clear();
-                            return "Not Accepted";
-                        }
                         semanticTokens.Clear();
+                        lexemes.Clear();
+                        return "Not Accepted";
                     }
+                    semanticTokens.Clear();
                 }
             }
             semanticTokens.Clear();
+            lexemes.Clear();
             return "Accepted";
         }
         private bool isSemantic(List<string> semanticTokens)
         {
-
             if (semanticTokens.Count == 3) { return true; }
             if (semanticTokens.Count == 5)
             {
