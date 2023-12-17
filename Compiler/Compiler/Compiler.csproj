@@ -2,10 +2,9 @@
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
-<langVersion>latest</langVersion>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{81B95E43-71BE-472F-AFB1-55B5226EBD3D}</ProjectGuid>
+    <ProjectGuid>{7A96D7D8-D202-4BB1-83F7-9CA50BF0251A}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>Compiler</RootNamespace>
     <AssemblyName>Compiler</AssemblyName>
@@ -33,9 +32,6 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup>
-    <StartupObject>Compiler.Program</StartupObject>
-  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Guna.UI">
       <HintPath>..\..\..\..\Downloads\Guna.UI-Framework-Lib-master\Guna.UI WinForms\.net 4.0\Guna.UI.dll</HintPath>
@@ -61,10 +57,19 @@
     <Compile Include="formCompiler.Designer.cs">
       <DependentUpon>formCompiler.cs</DependentUpon>
     </Compile>
+    <Compile Include="formLoadingScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formLoadingScreen.Designer.cs">
+      <DependentUpon>formLoadingScreen.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="formCompiler.resx">
       <DependentUpon>formCompiler.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formLoadingScreen.resx">
+      <DependentUpon>formLoadingScreen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -74,7 +79,6 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -89,11 +93,8 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\close %282%29.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\close %281%29.png" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+<PropertyGroup>
+   <LangVersion>preview</LangVersion>
+</PropertyGroup>
 </Project>

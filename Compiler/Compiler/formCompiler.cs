@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -19,6 +19,7 @@ namespace Compiler
         List<string> tokens = new();
         List<string> collectedToken = new();
         List<string> dataTypes = new List<string>
+
         {
             "int","double","boolean","char","String",
         };
@@ -28,7 +29,7 @@ namespace Compiler
         };
 
         // Button Open File
-        private void btnOpenFile_Click_1(object sender, EventArgs e)
+        private void btnOpenFile_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "All Files (*.*)|*.*";
@@ -82,8 +83,9 @@ namespace Compiler
                 btnOpenFile.Enabled = true; // Enable Open File button if the dialog is canceled
             }
         } // end OpenFile
-          // Button Clear Text
-        private void btnClear_Click(object sender, EventArgs e)
+
+        // Button Clear Text
+        private void btnClear_Click_1(object sender, EventArgs e)
         {
             // Display a warning message before clearing the text boxes
             DialogResult result = MessageBox.Show("Are you sure you want to clear the content?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
@@ -107,7 +109,7 @@ namespace Compiler
         }
 
         // Button Lexical Analysis
-        private void btnLexicalAnalysis_Click_1(object sender, EventArgs e)
+        private void btnLexicalAnalysis_Click(object sender, EventArgs e)
         {
             bool isPass = true;
 
@@ -207,7 +209,7 @@ namespace Compiler
         }
 
         // Button Syntax Analysis
-        private void btnSyntaxAnalysis_Click(object sender, EventArgs e)
+        private void btnSyntaxAnalysis_Click_1(object sender, EventArgs e)
         {
             // Perform syntax analysis here and display results in a message box
 
@@ -224,7 +226,7 @@ namespace Compiler
 
         // Sample syntax analysis function
         private string CheckSyntaxAnalysis(string code)
-        {         
+        {
             List<string> ct = new();
             foreach (string line in lines)
             {
@@ -244,24 +246,26 @@ namespace Compiler
             }
             return "Accepted";
         }
+
+        // Check Syntax
         private bool CheckSyntax(List<string> syntaxToken)
         {
-            
+
             if (syntaxToken.Count == 3)
             {
                 if (syntaxToken[0] == "<data_type>" && syntaxToken[1] == "<identifier>")
-                    return true;               
+                    return true;
             }
-            else if(syntaxToken.Count == 5)
-                {
+            else if (syntaxToken.Count == 5)
+            {
                 if (syntaxToken[0] == "<data_type>" && syntaxToken[1] == "<identifier>" && syntaxToken[2] == "<assignment_operator>" && syntaxToken[3] == "<value>")
                     return true;
-                }
+            }
             return false;
         }
 
         // Button Semantical Analysis
-        private void btnSemanticAnalysis_Click(object sender, EventArgs e)
+        private void btnSemanticAnalysis_Click_1(object sender, EventArgs e)
         {
             // Perform semantic analysis here and display results in a message box
 
@@ -279,7 +283,7 @@ namespace Compiler
         private string CheckSemanticAnalysis(string code)
         {
             List<string> semanticTokens = new();
-            foreach(string lexeme in lexemes)
+            foreach (string lexeme in lexemes)
             {
                 semanticTokens.Add(lexeme);
                 if (lexeme == ";")
@@ -297,6 +301,8 @@ namespace Compiler
             lexemes.Clear();
             return "Accepted";
         }
+
+        // isSemantic
         private bool isSemantic(List<string> semanticTokens)
         {
             if (semanticTokens.Count == 3) { return true; }
@@ -349,7 +355,7 @@ namespace Compiler
             if (result == DialogResult.Yes)
             {
                 // If the user clicks "Yes," close the form
-                Close();
+                this.Close();
             }
             // If the user clicks "No," do nothing
         }
