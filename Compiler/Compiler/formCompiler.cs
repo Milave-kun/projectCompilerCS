@@ -170,8 +170,11 @@ namespace Compiler
                 token = "<delimiter>";
             else if (isValue(lexeme))
                 token = "<value>";
+            else if (lexeme.Equals("true") || lexeme.Equals("false"))
+                token = "<value>";
             else if (isValidVar(lexeme))
                 token = "<identifier>";
+
             return token;
         }
 
@@ -231,6 +234,7 @@ namespace Compiler
                 {
                     string token = getToken(lexeme);
                     lexemesList.Add(token);
+                    Console.WriteLine(token);
                 }
                 if (!CheckSyntax(lexemesList))
                 {
