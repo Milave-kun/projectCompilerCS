@@ -1,8 +1,4 @@
 # Compiler
 by:
 <br>
-Me,
-<br>
-Milca,
-<br>
-Aries
+Me, Milca, and Aries
